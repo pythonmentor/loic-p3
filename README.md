@@ -15,13 +15,12 @@ To exit the labyrinth the player must collect all the objects before meeting the
 ```
 -tc- un prérequis est tout d'abord de créer et d'activer un environnement virtuel avec pipenv shell ou python3 -m venv venv (sous macos ou linux) / py -m venv venv (sous windows) puis source venv/bin/activate (macos et linux) / venv\Scripts\activate (sous windows). L'approche recommandée par la doc python est d'utiliser pipenv pour gérer les dépendances.
 ```
-### Prerequisite:
 You can install the required files with "pip install -r requirements.txt".  
 Required module :  
-- pygame
+- pygame ```-tc- pas besoin de le mentionner si dans le requirements.txt```
 
 ### Launch:
-Launch the game with "python3 macgyver.py"
+Launch the game with "python3 macgyver.py" ```-tc- python3 n'existe pas sous windows ```
 
 ### Project structure:
 The organization of the program is made up of several modules, each with very specific functionalities.
