@@ -12,7 +12,10 @@ To exit the labyrinth the player must collect all the objects before meeting the
 
 ---
 ### Prerequisite:
--tc- un prérequis est tout d'abord de créer et d'activer un environnement virtuel avec pipenv shell ou python3 -m venv venv (sous macos ou linux) / py -m venv venv (sous windows) puis source venv/bin/activate (macos et linux) / venv\Scripts\activate (sous windows). L'approche recommandée par la doc python est d'utiliser pipenv pour gérer les dépendances
+```
+-tc- un prérequis est tout d'abord de créer et d'activer un environnement virtuel avec pipenv shell ou python3 -m venv venv (sous macos ou linux) / py -m venv venv (sous windows) puis source venv/bin/activate (macos et linux) / venv\Scripts\activate (sous windows). L'approche recommandée par la doc python est d'utiliser pipenv pour gérer les dépendances.
+```
+### Prerequisite:
 You can install the required files with "pip install -r requirements.txt".  
 Required module :  
 - pygame
