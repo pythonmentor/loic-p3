@@ -16,3 +16,5 @@ dans le fichier.
 - funct n'est pas un bon nom pour un module python, tout comme functions ou
   d'autres noms associés au "comment". Nommer un module par rapport à son rôle
   dans le projet.
+- Dans macgyver.py, tu as de nombreuses opportunités de factorisation. Pour le
+  reste, les commentaires sont dans les fichiers concernés.

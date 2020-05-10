@@ -1,7 +1,10 @@
 """Maze generate's file for MacGiver maze game."""
+
+# -tc- Attention à respecter la PEP8 dans l'ordre des imports et la manière
+# -tc- de les formater.
 from random import sample, choice
 import config
-from lib import funct
+from lib import funct # -tc- modifier le nom de ce module et trouver un nom plus thématique
 
 
 class Maze:
@@ -28,10 +31,10 @@ class Maze:
     def coord_lists(self):
         """Create lists for each sprite type."""
         # Empty spaces coordinates list:
-        for x in range(len(self.frame)):
-            for y in range(len(self.frame)):
-                if self.frame[y][x] == 'E':
-                    self.empty_spaces_list.append((x, y))
+        for x in range(len(self.frame)): # -tc- plus pythonique: for x, line in enumerate(self.frame)
+            for y in range(len(self.frame)): # -tc- plus pythonique: for y, char in enumerate(line)
+                if self.frame[y][x] == 'E': # -tc- si tu fais les modifications: if char == 'E'
+                    self.empty_spaces_list.append((x, y)) # -tc- dans la logique de pygame, on utilise plutôt (y, x)
                 elif self.frame[y][x] == 'M':
                     self.perso_start_coord = (x, y)
                 elif self.frame[y][x] == 'G':
@@ -40,6 +43,9 @@ class Maze:
                 elif self.frame[y][x] == 'O':
                     outdoor_coord = ((x, y))
                     self.outdoor_coord = outdoor_coord
+
+                # -tc- construire une liste des murs peut également être pratique 
+                # -tc- pour construire l'interface graphique
 
 
 
@@ -52,6 +58,11 @@ class Maze:
         for i in range(nb_obj):
             self.dict_obj['obj' + str(i + 1)] = list_coord_obj[i]
 
+        # -tc- personnellement, je ferais le contraire, je mettrais la position
+        # -tc- de l'objet en clé et le nom en valeur. Cela permet de très 
+        # -tc- rapidement tester si macgyver est positionné sur la cas d'un
+        # -tc- objet.
+
     def moves_spaces(self):
         """Create list of moves spaces."""
         self.moves_spaces_list = self.empty_spaces_list
@@ -59,9 +70,12 @@ class Maze:
         self.moves_spaces_list.append(self.bad_guy_coord)
         self.moves_spaces_list.append(self.outdoor_coord)
 
+
     @classmethod
     def print_count(cls):
         if cls.game_count == 1:
             print(f"You played {cls.game_count} game.")
         else:
             print(f"You played {cls.game_count} games.")
+
+        # -tc- dommage de mettre des prints dans une classe de modèle

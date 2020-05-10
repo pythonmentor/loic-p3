@@ -7,7 +7,7 @@ class Player:
     def __init__(self, level):
         """Player start parameters."""
         self.level = level
-        self.x = level.perso_start_coord[0]
+        self.x = level.perso_start_coord[0] # -tc- dans maze.py, tu as utiliser des tuples pour les positions. Pourquoi ne pas continuer?
         self.y = level.perso_start_coord[1]
         # Generate inventory
         self.inventory_list = []
@@ -29,6 +29,8 @@ class Player:
 
     def loot(self, level):
         """Increment objects in inventory when player is on."""
+        # -tc- si comme je le recommande, tu utilises les positions comme clé
+        # -tc- de dict_obj, cette étape devient triviale
         for obj_numb, coord in level.dict_obj.items():
             if (self.x, self.y) == coord \
              and obj_numb not in self.inventory_list:
