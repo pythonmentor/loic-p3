@@ -89,7 +89,7 @@ def main():
                     if event.type == KEYDOWN:
                         for move, value in keys_events.items():
                             if event.key == value:
-                                player.movement(move)
+                                player.movement(move, level)
 
                 # Add loot in Inventory
                 player.loot(level)
@@ -131,7 +131,7 @@ def main():
                         display_maze.badguy_sleeping = True
 
                 # Check Exit
-                if (player.x, player.y) == level.coord_outdoor:
+                if (player.x, player.y) == level.outdoor_coord:
                     # Check if badguy is sleeping
                     for event in pygame.event.get():
                         # Close window

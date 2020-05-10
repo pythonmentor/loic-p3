@@ -13,9 +13,12 @@ class Display_mess:
     def display_message(self, message):
         """Create font and message screen to display messages."""
         font_ = font.Font(None, 44)
+        # Margins and background
         x, y = 20, 20
         type(self).window_mess.fill(Color("BLACK"))
+        # Read message
         lines = message.splitlines()
+        # Display message
         for i, line in enumerate(lines):
             line_py = font_.render(line, True, Color("WHITE"))
             type(self).window_mess.blit(line_py, (x, y + 44 * i))
@@ -25,6 +28,7 @@ class Display_mess:
 class Display_maze:
     """Display the maze."""
 
+    game_count = 0
     window = display.set_mode(config.WINDOW_SIZE)
 
     def __init__(self, level, player):
@@ -36,6 +40,8 @@ class Display_maze:
         self.load_img()
         self.display_sprites(level)
         self.display_objects(level, player)
+        # Increment game count
+        type(self).game_count += 1
 
     def load_img(self):
         """Load images, return paths."""
@@ -47,24 +53,19 @@ class Display_maze:
 
     def display_sprites(self, level):
         """Display maze using load_maze."""
-        for x in range(len(level.frame)):
-            for y in range(len(level.frame)):
-                if level.frame[y][x] == 'W':
-                    type(self).window.blit(
+        for coord in level.walls_spaces_list:
+            type(self).window.blit(
                         funct.py_img(self.img_dict['wall']),
-                        (config.SPRITE * x, config.SPRITE * y))
-                elif level.frame[y][x] == 'O':
-                    level.coord_outdoor = (x, y)
-                    type(self).window.blit(
+                        (config.SPRITE * coord[0], config.SPRITE * coord[1]))
+        type(self).window.blit(
                         funct.py_img(self.img_dict['outdoor']),
-                        (config.SPRITE * x, config.SPRITE * y))
-                elif level.frame[y][x] == 'G':
-                    level.coord_badguy = (x, y)
-                    # Check if badguy is sleeping
-                    if self.badguy_sleeping is not True:
-                        type(self).window.blit(
-                            funct.py_img(self.img_dict['badguy']),
-                            (config.SPRITE * x, config.SPRITE * y))
+                        (config.SPRITE * level.outdoor_coord[0],
+                         config.SPRITE * level.outdoor_coord[1]))
+        if self.badguy_sleeping is False:
+            type(self).window.blit(
+                        funct.py_img(self.img_dict['badguy']),
+                        (config.SPRITE * level.bad_guy_coord[0],
+                         config.SPRITE * level.bad_guy_coord[1]))
 
     def display_objects(self, level, player):
         """Display objects in the maze if not looted."""
@@ -89,3 +90,11 @@ class Display_maze:
             (player.x * config.SPRITE, player.y * config.SPRITE))
         # Refresh
         display.flip()
+
+    @classmethod
+    def print_count(cls):
+        """Print game count."""
+        if cls.game_count == 1:
+            print(f"You played {cls.game_count} game.")
+        else:
+            print(f"You played {cls.game_count} games.")

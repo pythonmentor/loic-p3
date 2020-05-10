@@ -10,10 +10,8 @@ from lib import funct # -tc- modifier le nom de ce module et trouver un nom plus
 class Maze:
     """Generate the maze frame."""
 
-    game_count = 0
-
     def __init__(self, nb_obj):
-        """Create BadGuy status. Load maze file and create 'frame' list."""
+        """Load maze file create frame list and lists for each sprite type."""
         # Select one file randomly
         selected_level = choice(funct.list_files(config.LEVELS_REP))
         # Read .json and return a list
@@ -25,8 +23,6 @@ class Maze:
         self.coord_lists()
         self.objects_positions(nb_obj)
         self.moves_spaces()
-        # Game count
-        type(self).game_count += 1
 
     def coord_lists(self):
         """Create lists for each sprite type."""
@@ -69,13 +65,3 @@ class Maze:
         self.moves_spaces_list.append(self.perso_start_coord)
         self.moves_spaces_list.append(self.bad_guy_coord)
         self.moves_spaces_list.append(self.outdoor_coord)
-
-
-    @classmethod
-    def print_count(cls):
-        if cls.game_count == 1:
-            print(f"You played {cls.game_count} game.")
-        else:
-            print(f"You played {cls.game_count} games.")
-
-        # -tc- dommage de mettre des prints dans une classe de modèle
